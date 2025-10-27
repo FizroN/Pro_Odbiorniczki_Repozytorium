@@ -9,7 +9,7 @@ clear all; close all; clc;
 centerFreq = 96.0e6; %RMF FM
 basebandFs = 160e3;
 plutoGain  = 65;
-frameLen   = 16384;
+frameLen   = 16384/2;
 audioFs    = 48000;
 doStereo   = true;          % set true to attempt stereo decode (L+R and L-R)
 saveAudio  = true;           % set true to save .wav file

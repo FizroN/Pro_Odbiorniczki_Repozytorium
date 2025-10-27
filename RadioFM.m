@@ -9,9 +9,9 @@ clear all; close all; clc;
 centerFreq = 96.0e6; %RMF FM
 basebandFs = 200e3;
 plutoGain  = 70;
-frameLen   = 4096;
+frameLen   = 4096*2;
 audioFs    = 48000;
-doStereo   = true;          % set true to attempt stereo decode (L+R and L-R)
+doStereo   = false;          % set true to attempt stereo decode (L+R and L-R)
 saveAudio  = true;           % set true to save .wav file
 audioFilename = 'pluto_fm_output.wav';
 saveIQ     = false;          % save raw IQ to file (for later analysis)
