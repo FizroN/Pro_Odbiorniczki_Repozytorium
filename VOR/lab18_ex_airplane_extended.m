@@ -3,8 +3,8 @@
   m=128; cm_plasma=plasma(m); cm = plasma;   % color maps for gray printing
 
 % Read a recorded IQ signal - two VOR avionics signals
-  FileName = 'SDRSharp_Airplane_112500kHz_IQ.wav'; T=5; demod=3; fc = 2.9285e+5;
-% FileName = 'SDRSharp_Airplane_112849kHz_IQ.wav'; T=5; demod=3; fc = -5.5353e+4;
+ % FileName = 'SDRSharp_Airplane_112500kHz_IQ.wav'; T=5; demod=3; fc = 2.9285e+5;
+ FileName = 'SDRSharp_Airplane_112849kHz_IQ.wav'; T=5; demod=3; fc = -5.5353e+4;
 
 % #########################################################################
 % START - From program lab16_ex_IQ_DFT.m ##################################
@@ -66,8 +66,7 @@
     
     %%% EDUCATIONAL: FILTER DESIGN
     % We design a band-pass filter to isolate the VOR signal from the raw radio spectrum.
-    % We use 'fir1' (Finite Impulse Response) filter.
-    h = fir1(M-1, [f1-2000, f2+2000]/(fs/2), 'bandpass'); 
+    h = remez(M-1,[0 (fam/2-df) (fam/2+df) fs/2]/(fs/2),[ 1 0.9 0.1 0 ],[1 1]); h=reshape(h,1,M); h=h.*exp(j*2*pi*fc/fs*(-M2:M2)); % Matlab (old), Octave 
 
     % --- VOR SIGNAL ISOLATION ---
     x = conv(x,h); x=x(M:end-M+1);      % Apply filter and compensate delay
